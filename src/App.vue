@@ -2,8 +2,8 @@
   <div id="app">
     <div class="button-grp">
       <!-- <button @click="select('chart')" :class="{btnActive: selected === 'chart'}">Chart</button>
-      <button @click="select('stockChart')" :class="{btnActive: selected === 'stockChart'}">Stock Chart</button> -->
-      <button @click="select('mapChart')" :class="{btnActive: selected === 'mapChart'}">Map Chart</button>
+      <button @click="select('stockChart')" :class="{btnActive: selected === 'stockChart'}">Stock Chart</button> 
+      <button @click="select('pureMap')" :class="{btnActive: selected === 'pureMap'}">Map!</button> -->
     </div>
     <keep-alive>
       <component :is="currentView"></component>
@@ -14,20 +14,21 @@
 <script>
 //import Chart from './components/Chart.vue'
 //import StockChart from './components/StockChart'
-import MapChart from './components/MapChart'
+//import MapChart from './components/MapChart'
 
 export default {
   name: 'app',
   data () {
     return {
-      selected: 'mapChart',
-      currentView: 'mapChart'
+      selected: 'pureMap',
+      currentView: 'pureMap'
     }
   },
   components: {
   //  chart: Chart,
   //  stockChart: StockChart,
-    mapChart: MapChart
+  //  mapChart: MapChart
+      // TODO Define pureMap: PureMap
   },
   methods: {
     activate (elem) {
