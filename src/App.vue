@@ -1,8 +1,6 @@
 <template>
   <div id="app">
     <div class="button-grp">
-      <!-- <button @click="select('chart')" :class="{btnActive: selected === 'chart'}">Chart</button>
-      <button @click="select('stockChart')" :class="{btnActive: selected === 'stockChart'}">Stock Chart</button> -->
       <button @click="select('mapChart')" :class="{btnActive: selected === 'mapChart'}">Map Chart</button>
     </div>
     <keep-alive>
@@ -12,8 +10,7 @@
 </template>
 
 <script>
-//import Chart from './components/Chart.vue'
-//import StockChart from './components/StockChart'
+
 import MapChart from './components/MapChart'
 
 export default {
@@ -25,8 +22,6 @@ export default {
     }
   },
   components: {
-  //  chart: Chart,
-  //  stockChart: StockChart,
     mapChart: MapChart
   },
   methods: {

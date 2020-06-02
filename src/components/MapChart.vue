@@ -84,7 +84,7 @@ export default {
     //obj.$children[0].chart.series[0].setData(data, true); //Some shit with the point options. 
     //obj.$children[0].chart.redraw(); //re-draw the map, but the map data didn't change need to update some other shit. 
     for(var i in data) {
-      	var country = data[i];
+        var country = data[i];
         console.log("new object!")
         country.code = country.alpha3Code
         country.value = country.population
