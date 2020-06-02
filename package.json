@@ -22,7 +22,6 @@
   },
   "eslintConfig": {
     "root": true,
-    "no-mixed-spaces-and-tabs": 0,
     "env": {
       "node": true
     },
@@ -33,7 +32,9 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {
+      "no-mixed-spaces-and-tabs": 0
+    }
   },
   "browserslist": [
     "> 1%",

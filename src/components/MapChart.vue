@@ -53,9 +53,24 @@ export default {
         colorAxis: {
           min: 0
         },
+       // series:{
+
+       // },
         series: [{
           name: 'Population', //modify this for the name
           joinBy:['iso-a3', 'code'],
+          point: {
+            events: {
+              click: function() {
+                getJSON('https://api.worldbank.org/v2/country/' + this.code + '/indicator/NY.GDP.MKTP.CD?date=2018&format=json', this, function(err, obj, data) {
+                  if (err !== null) {
+                      alert('Something went wrong: ' + err);
+                  } else {
+                    alert(JSON.stringify(data))
+                }});
+              }
+            }
+          },
           states: {
             hover: {
               color: '#BADA55'
