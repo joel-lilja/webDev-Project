@@ -1,6 +1,9 @@
 <template>
 <div>
   <highcharts :constructor-type="'mapChart'" :options="mapOptions" class="map"></highcharts>
+  <ul ref="cardlist">
+    <li v-for="item in clist"  v-bind:key="item" >{{ item }}</li>
+  </ul>
 </div>
 </template>
 
@@ -14,6 +17,9 @@
 //"population":27657145,
 
 //import Highcharts from 'highcharts'
+//using a global to hold the vue component becuse I dont know what else to do. 
+var rootObj = {}; 
+
 
 var getJSON = function(url, obj, callback) {
     var xhr = new XMLHttpRequest();
@@ -31,9 +37,20 @@ var getJSON = function(url, obj, callback) {
 };
 
 
+
 export default {
+  methods:{
+    addCard: function(data) {
+      this.clist.push(data);
+    }
+  },
   data () {
+    rootObj = this; 
+    //console.log(rootObj)
     return {
+      clist: [
+        "HELLO"
+      ],
       mapOptions: {
         chart: {
           map: 'myMapName'
@@ -66,7 +83,15 @@ export default {
                   if (err !== null) {
                       alert('Something went wrong: ' + err);
                   } else {
-                    alert(JSON.stringify(data))
+                    //so access to data and the series here, i have no idea how to pass the vue componenent. 
+                    console.log(rootObj) //globaly actually still in scope, I would say expected if this hadn't all been nonsense so far. 
+                   // console.log(rootObj.data)
+                    console.log(rootObj.clist) //finally we have data
+                    rootObj.clist.push(data)
+                   // alert(JSON.stringify(data))
+
+                  
+
                 }});
               }
             }
@@ -94,18 +119,18 @@ export default {
     if (err !== null) {
       alert('Something went wrong: ' + err);
     } else {
-      console.log(data)
+     // console.log(data)
     //run through data in series? 
     //obj.$children[0].chart.series[0].setData(data, true); //Some shit with the point options. 
     //obj.$children[0].chart.redraw(); //re-draw the map, but the map data didn't change need to update some other shit. 
     for(var i in data) {
         var country = data[i];
-        console.log("new object!")
+       // console.log("new object!")
         country.code = country.alpha3Code
         country.value = country.population
         delete country.population
         delete country.alpha3Code
-        console.log(country)
+       // console.log(country)
       }
      obj.$children[0].chart.series[0].setData(data, true);
     }});
