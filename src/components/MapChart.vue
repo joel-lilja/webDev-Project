@@ -49,7 +49,6 @@ export default {
     //console.log(rootObj)
     return {
       clist: [
-        "HELLO"
       ],
       mapOptions: {
         chart: {
@@ -83,12 +82,31 @@ export default {
                   if (err !== null) {
                       alert('Something went wrong: ' + err);
                   } else {
+                  //  console.log(rootObj.clist)
                     //so access to data and the series here, i have no idea how to pass the vue componenent. 
-                    console.log(rootObj) //globaly actually still in scope, I would say expected if this hadn't all been nonsense so far. 
+                   // console.log(rootObj) //globaly actually still in scope, I would say expected if this hadn't all been nonsense so far. 
                    // console.log(rootObj.data)
-                    console.log(rootObj.clist) //finally we have data
-                    rootObj.clist.push(data)
-                   // alert(JSON.stringify(data))
+                     //finally we have data
+                    var cardArray = rootObj.clist;
+                    //console.log(data)
+                   // console.log('response code: ' + data[1][0].countryiso3code) proper way to get the repsonse code.
+                   //so try creating a for loop around this issue here. 
+                    var cardTemp = JSON.parse(JSON.stringify(cardArray))
+                    console.log(cardTemp)
+                    const res = cardTemp.some(el => el.countryiso3code == data.countryiso3code )
+                   // console.log("cardTemp: non base log")
+                    //console.log(cardTemp[0][1][0])
+                    
+                    console.log('result: ' + res)
+                    if(res == false){
+                      rootObj.clist.push(data)
+                    } else {
+                      var index = cardArray.findIndex(el => el.countryiso3code == data.countryiso3code)
+                      rootObj.clist.splice(index,1)
+                    }
+                   // console.log(rootObj.clist)
+                   // rootObj.clist.push(data)
+                    //alert(JSON.stringify(data))
 
                   
 
