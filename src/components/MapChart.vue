@@ -19,6 +19,8 @@
 //import Highcharts from 'highcharts'
 //using a global to hold the vue component becuse I dont know what else to do. 
 var rootObj = {}; 
+var shadowArray = []; //Using this global array to track indexing of the vue clist array data. I'm sick of trying to handle acess the array in whatever convoluted way vue has it stored
+//vue provides mechanisms to push/pop/splice/... the array but does not provide functionality for handling searching or getting an index 
 
 
 var getJSON = function(url, obj, callback) {
@@ -87,22 +89,57 @@ export default {
                    // console.log(rootObj) //globaly actually still in scope, I would say expected if this hadn't all been nonsense so far. 
                    // console.log(rootObj.data)
                      //finally we have data
-                    var cardArray = rootObj.clist;
+                  //  var cardArray = rootObj.clist;
                     //console.log(data)
-                   // console.log('response code: ' + data[1][0].countryiso3code) proper way to get the repsonse code.
+                   //  proper way to get the repsonse code.
                    //so try creating a for loop around this issue here. 
-                    var cardTemp = JSON.parse(JSON.stringify(cardArray))
-                    console.log(cardTemp)
-                    const res = cardTemp.some(el => el.countryiso3code == data.countryiso3code )
+                   //so may as well make a global array that holds the country at the correct index, this is nonsense!
+                   // var cardTemp = JSON.parse(JSON.stringify(cardArray))
+                   // console.log(cardTemp)
+                  // for(var i in shadowArray) {
+                    // console.log('shadowArray index' + i)
+                    // console.log(shadowArray[i])
+
+                  // }
+                   var res = false; 
+                   var spliceIndex = 0; 
+                   //console.log('shadow array[1][0]' )
+                   //console.log(shadowArray[1][0])
+                   //console.log('shadow array[0][1]' )
+                //   console.log('temp array')
+                   try {
+                     var tempArray = JSON.parse(JSON.stringify(shadowArray))
+                     //console.log(tempArray)
+                     for(var i = 0; i < tempArray.length; i++){
+                         console.log('temp array at index: ' + i)
+                         console.log(' shadowArray code: ' + tempArray[i][1][0].countryiso3code + 'data code: ' + data[1][0].countryiso3code)
+                         if(tempArray[i][1][0].countryiso3code === data[1][0].countryiso3code){
+                           res = true
+                           spliceIndex = i; 
+                           break; 
+                         }
+                     }
+                     console.log('response code: ' + data[1][0].countryiso3code)
+                     //res = shadowArray[0][1].some(el => el.countryiso3code == data[1][0].countryiso3code ) //this was dumb or I am dumb take your pick. 
+                     console.log('result in try: '  + res)
+                   }
+                   catch (err){
+                     console.log('ignore me')
+                   }
+                    //var res = shadowArray[0][1].some(el => el.countryiso3code == data[1][0].countryiso3code ) //data is single element so this works in theory. 
                    // console.log("cardTemp: non base log")
                     //console.log(cardTemp[0][1][0])
                     
-                    console.log('result: ' + res)
+                    console.log('result after try: ' + res)
                     if(res == false){
                       rootObj.clist.push(data)
+                      shadowArray.push(data)
+                      console.log('data being pushed: ' + data  +', Index: ' + shadowArray.length)
                     } else {
-                      var index = cardArray.findIndex(el => el.countryiso3code == data.countryiso3code)
-                      rootObj.clist.splice(index,1)
+                     // var index = shadowArray.findIndex(el => el.countryiso3code == data.countryiso3code) //also need to handle manually now
+                      console.log('Index: ' + spliceIndex)
+                      rootObj.clist.splice(spliceIndex,1)
+                      shadowArray.splice(spliceIndex,1)
                     }
                    // console.log(rootObj.clist)
                    // rootObj.clist.push(data)
