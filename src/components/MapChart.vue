@@ -71,9 +71,7 @@ export default {
         colorAxis: {
           min: 0
         },
-       // series:{
 
-       // },
         series: [{
           name: 'Population', //modify this for the name
           joinBy:['iso-a3', 'code'],
@@ -84,18 +82,11 @@ export default {
                   if (err !== null) {
                       alert('Something went wrong: ' + err);
                   } else {
-                  //  console.log(rootObj.clist)
-                    //so access to data and the series here, i have no idea how to pass the vue componenent. 
+
                    // console.log(rootObj) //globaly actually still in scope, I would say expected if this hadn't all been nonsense so far. 
                    // console.log(rootObj.data)
                      //finally we have data
-                  //  var cardArray = rootObj.clist;
-                    //console.log(data)
-                   //  proper way to get the repsonse code.
-                   //so try creating a for loop around this issue here. 
-                   //so may as well make a global array that holds the country at the correct index, this is nonsense!
-                   // var cardTemp = JSON.parse(JSON.stringify(cardArray))
-                   // console.log(cardTemp)
+               
                   // for(var i in shadowArray) {
                     // console.log('shadowArray index' + i)
                     // console.log(shadowArray[i])
@@ -103,9 +94,6 @@ export default {
                   // }
                    var res = false; 
                    var spliceIndex = 0; 
-                   //console.log('shadow array[1][0]' )
-                   //console.log(shadowArray[1][0])
-                   //console.log('shadow array[0][1]' )
                 //   console.log('temp array')
                    try {
                      var tempArray = JSON.parse(JSON.stringify(shadowArray))
@@ -120,15 +108,12 @@ export default {
                          }
                      }
                      console.log('response code: ' + data[1][0].countryiso3code)
-                     //res = shadowArray[0][1].some(el => el.countryiso3code == data[1][0].countryiso3code ) //this was dumb or I am dumb take your pick. 
                      console.log('result in try: '  + res)
                    }
                    catch (err){
                      console.log('ignore me')
                    }
-                    //var res = shadowArray[0][1].some(el => el.countryiso3code == data[1][0].countryiso3code ) //data is single element so this works in theory. 
-                   // console.log("cardTemp: non base log")
-                    //console.log(cardTemp[0][1][0])
+
                     
                     console.log('result after try: ' + res)
                     if(res == false){
@@ -136,7 +121,6 @@ export default {
                       shadowArray.push(data)
                       console.log('data being pushed: ' + data  +', Index: ' + shadowArray.length)
                     } else {
-                     // var index = shadowArray.findIndex(el => el.countryiso3code == data.countryiso3code) //also need to handle manually now
                       console.log('Index: ' + spliceIndex)
                       rootObj.clist.splice(spliceIndex,1)
                       shadowArray.splice(spliceIndex,1)
