@@ -2,7 +2,7 @@
 <div>
   <highcharts :constructor-type="'mapChart'" :options="mapOptions" class="map"></highcharts>
   <ul ref="cardlist">
-    <li v-for="item in clist"  v-bind:key="item" >{{ item }}</li>
+    <li v-for="item in clist"  v-bind:key="item" >{{ item.name }} * GDP: {{item.gdp }} % land Agriculture: {{item.agi}}</li>
   </ul>
 </div>
 </template>
@@ -97,10 +97,10 @@ export default {
                     // console.log(shadowArray[i])
 
                   // }
-                  console.log('data')
-                  console.log(data)
-                  console.log('Idata 2')
-                  console.log(idata2)
+               //   console.log('data')
+               //   console.log(data)
+              //    console.log('Idata 2')
+              //    console.log(idata2)
 
                   var cardData = {}
                    var res = false; 
@@ -110,9 +110,10 @@ export default {
                      var tempArray = JSON.parse(JSON.stringify(shadowArray))
                      //console.log(tempArray)
                      for(var i = 0; i < tempArray.length; i++){
-                      //   console.log('temp array at index: ' + i)
+                   //      console.log('temp array at index: ' + i)
+                   //      console.log(tempArray[i])
                       //   console.log(' shadowArray code: ' + tempArray[i][1][0].countryiso3code + ' data code: ' + data[1][0].countryiso3code)
-                         if(tempArray[i][1][0].countryiso3code === data[1][0].countryiso3code){
+                         if(tempArray[i].code === data[1][0].countryiso3code){
                            res = true
                            spliceIndex = i; 
                            break; 
@@ -126,10 +127,18 @@ export default {
                    }
 
                     
-                    console.log('result after try: ' + res)
+                   // console.log('result after try: ' + res)
                     if(res == false){
-                      rootObj.clist.push(data)
-                      shadowArray.push(data)
+                      //Think I can just construct the data here
+                      cardData.code = data[1][0].countryiso3code;
+                      cardData.name = data[1][0].country.value;
+                      cardData.gdp = data[1][0].value;
+                      cardData.agi = idata2[1][0].value;
+                      /////
+                      console.log('cardData')
+                      console.log(cardData)
+                      rootObj.clist.push(cardData)
+                      shadowArray.push(cardData)
                   //    console.log('data being pushed: ' + data  +', Index: ' + shadowArray.length)
                     } else {
                  //     console.log('Index: ' + spliceIndex)
