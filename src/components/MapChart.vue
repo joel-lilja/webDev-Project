@@ -19,8 +19,7 @@
 //import Highcharts from 'highcharts'
 //using a global to hold the vue component becuse I dont know what else to do. 
 var rootObj = {}; 
-var shadowArray = []; //Using this global array to track indexing of the vue clist array data. I'm sick of trying to handle acess the array in whatever convoluted way vue has it stored
-//vue provides mechanisms to push/pop/splice/... the array but does not provide functionality for handling searching or getting an index 
+
 
 
 var getJSON = function(url, obj, callback) {
@@ -107,7 +106,7 @@ export default {
                    var spliceIndex = 0; 
                 //   console.log('temp array')
                    try {
-                     var tempArray = JSON.parse(JSON.stringify(shadowArray))
+                     var tempArray = JSON.parse(JSON.stringify(rootObj.clist))
                      //console.log(tempArray)
                      for(var i = 0; i < tempArray.length; i++){
                    //      console.log('temp array at index: ' + i)
@@ -138,12 +137,10 @@ export default {
                       console.log('cardData')
                       console.log(cardData)
                       rootObj.clist.push(cardData)
-                      shadowArray.push(cardData)
                   //    console.log('data being pushed: ' + data  +', Index: ' + shadowArray.length)
                     } else {
                  //     console.log('Index: ' + spliceIndex)
                       rootObj.clist.splice(spliceIndex,1)
-                      shadowArray.splice(spliceIndex,1)
                     }
                    // console.log(rootObj.clist)
                    // rootObj.clist.push(data)
