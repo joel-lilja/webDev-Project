@@ -112,7 +112,7 @@ export default {
                      //console.log(tempArray)
                      for(var i = 0; i < tempArray.length; i++){
                          console.log('temp array at index: ' + i)
-                         console.log(' shadowArray code: ' + tempArray[i][1][0].countryiso3code + 'data code: ' + data[1][0].countryiso3code)
+                         console.log(' shadowArray code: ' + tempArray[i][1][0].countryiso3code + ' data code: ' + data[1][0].countryiso3code)
                          if(tempArray[i][1][0].countryiso3code === data[1][0].countryiso3code){
                            res = true
                            spliceIndex = i; 
