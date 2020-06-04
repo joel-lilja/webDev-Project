@@ -78,11 +78,16 @@ export default {
           point: {
             events: {
               click: function() {
-                getJSON('https://api.worldbank.org/v2/country/' + this.code + '/indicator/NY.GDP.MKTP.CD?date=2018&format=json', this, function(err, obj, data) {
+                var self = this //inidicator gdp
+                getJSON('https://api.worldbank.org/v2/country/' + this.code + '/indicator/NY.GDP.MKTP.CD?date=2016&format=json', this, function(err, obj, data) {
                   if (err !== null) {
                       alert('Something went wrong: ' + err);
                   } else {
-
+                      //inidicator % of land agrictultural purposes
+                  getJSON('https://api.worldbank.org/v2/country/' + self.code + '/indicator/AG.LND.AGRI.ZS?date=2016&format=json', this, function(err, dummyobj, idata2) {
+                      if (err !== null) {
+                      alert('Something went wrong: ' + err);
+                       } else {
                    // console.log(rootObj) //globaly actually still in scope, I would say expected if this hadn't all been nonsense so far. 
                    // console.log(rootObj.data)
                      //finally we have data
@@ -92,6 +97,12 @@ export default {
                     // console.log(shadowArray[i])
 
                   // }
+                  console.log('data')
+                  console.log(data)
+                  console.log('Idata 2')
+                  console.log(idata2)
+
+                  var cardData = {}
                    var res = false; 
                    var spliceIndex = 0; 
                 //   console.log('temp array')
@@ -99,16 +110,16 @@ export default {
                      var tempArray = JSON.parse(JSON.stringify(shadowArray))
                      //console.log(tempArray)
                      for(var i = 0; i < tempArray.length; i++){
-                         console.log('temp array at index: ' + i)
-                         console.log(' shadowArray code: ' + tempArray[i][1][0].countryiso3code + ' data code: ' + data[1][0].countryiso3code)
+                      //   console.log('temp array at index: ' + i)
+                      //   console.log(' shadowArray code: ' + tempArray[i][1][0].countryiso3code + ' data code: ' + data[1][0].countryiso3code)
                          if(tempArray[i][1][0].countryiso3code === data[1][0].countryiso3code){
                            res = true
                            spliceIndex = i; 
                            break; 
                          }
                      }
-                     console.log('response code: ' + data[1][0].countryiso3code)
-                     console.log('result in try: '  + res)
+                  //   console.log('response code: ' + data[1][0].countryiso3code)
+                  //   console.log('result in try: '  + res)
                    }
                    catch (err){
                      console.log('ignore me')
@@ -119,19 +130,20 @@ export default {
                     if(res == false){
                       rootObj.clist.push(data)
                       shadowArray.push(data)
-                      console.log('data being pushed: ' + data  +', Index: ' + shadowArray.length)
+                  //    console.log('data being pushed: ' + data  +', Index: ' + shadowArray.length)
                     } else {
-                      console.log('Index: ' + spliceIndex)
+                 //     console.log('Index: ' + spliceIndex)
                       rootObj.clist.splice(spliceIndex,1)
                       shadowArray.splice(spliceIndex,1)
                     }
                    // console.log(rootObj.clist)
                    // rootObj.clist.push(data)
                     //alert(JSON.stringify(data))
+                       }
 
                   
 
-                }});
+                })}});
               }
             }
           },
