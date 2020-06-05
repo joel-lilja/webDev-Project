@@ -1,7 +1,7 @@
 <template>
-<div>
+<div class="main">
   <highcharts :constructor-type="'mapChart'" :options="mapOptions" class="map"></highcharts>
-  <ul ref="cardlist">
+  <ul class="cardlist">
     <li v-for="item in clist"  v-bind:key="item" >{{ item.name }} <br> GDP: {{item.gdp }} <br> % land Agriculture: {{item.agi}}</li>
   </ul>
 </div>
@@ -197,20 +197,23 @@ export default {
  <style scoped>
 .map {
   min-height: 800px;
+  border-radius: 25px; 
 }
 
 li {
  /* float: left; */
-  border: 20px solid rgba(0, 0, 0, 0);
+  border: 10px solid rgba(0, 0, 0, 0);
   font-size: 18px;
   height: 100px;
   width: 400px;
   line-height: 18px;
-  background: #ddd;
-  display: inline-block;
+  background: white;
+  display: block;
   text-align: center;
   float: left;
   background-clip: padding-box;
+  border-radius: 25px; 
+
 }
 
 

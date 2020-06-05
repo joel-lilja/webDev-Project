@@ -1,10 +1,8 @@
 <template>
   <div id="app">
-    <div class="button-grp">
-      <button @click="select('mapChart')" :class="{btnActive: selected === 'mapChart'}">Map Chart</button>
-    </div>
+    <h1>Joels Map App</h1>
     <keep-alive>
-      <component :is="currentView"></component>
+      <mapChart></mapChart>
     </keep-alive>
   </div>
 </template>
@@ -16,30 +14,11 @@ import MapChart from './components/MapChart'
 export default {
   name: 'app',
   data () {
-    return {
-      selected: 'mapChart',
-      currentView: 'mapChart'
-    }
   },
   components: {
-    mapChart: MapChart
+    MapChart
   },
   methods: {
-    activate (elem) {
-      this.selected = elem
-    },
-//    handler () {
-  //    var args = arguments
-    //  for (var arg of args) {
-      //  if (arg instanceof Function) {
-        //  arg()
-        //}
-     // }
-   // },
-    select (elem) {
-      this.currentView = elem
-      this.activate(elem)
-    }
   }
 }
 </script>
@@ -54,57 +33,12 @@ export default {
   margin: 0 auto;
   margin-top: 60px;
   width: 70%;
+  /* background-color: blue; */
 }
-
-
-
-
-
-a {
-  color: #42b983;
+body {
+  background-color: lightblue; 
 }
-.row {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.row > * {
-  padding: 0 20px;
-}
-.logos {
-  margin: 0 auto;
-  width:50%;
-}
-.logo-hc {
-  width: 70%;
-  height: auto;
-}
-.logo-vue {
-  width: 15%;
-  height: auto;
-}
-.button-grp {
-  margin: 20px 0;
-}
-button {
-  padding: 10px 20px;
-  outline: none;
-  background: #828ea0;
-  color: #fff;
-  font-size: 16px;
-  margin: 5px;
-  border: 0px;
-}
-button:hover {
-  background: #a7aeb8;
-  transition: background 0.2s;
-}
-button:active {
-  color: rgb(117, 117, 117);
-}
-.btnActive {
-  color: #6fcd98
-}
+ h1 {
+   color: white; 
+ }
 </style>
