@@ -21,7 +21,10 @@
 var rootObj = {}; 
 
 
-
+//Copped this code from here
+//https://stackoverflow.com/questions/12460378/how-to-get-json-from-url-in-javascript
+//highcharts.getJSON was not able to source correctly, and I couldn't figure out how to fix it
+//Modified code to include obj paramater which is used to populate the map series data. 
 var getJSON = function(url, obj, callback) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
@@ -56,10 +59,10 @@ export default {
           map: 'myMapName'
         },
         title: {
-          text: 'Highmaps basic demo'
+          text: 'Country Population Heatmap'
         },
         subtitle: {
-          text: 'Source map: <a href="http://code.highcharts.com/mapdata/custom/world.js">World, Miller projection, medium resolution</a>' //this map 
+          text: 'Source map: <a href="http://code.highcharts.com/mapdata/custom/world.js">World, Miller projection, high resolution</a>' //this map 
         },
         mapNavigation: {
           enabled: true,

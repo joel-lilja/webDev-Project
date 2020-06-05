@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>Joels Map App</h1>
+    <h1>Joel's Map App</h1>
     <keep-alive>
       <mapChart></mapChart>
     </keep-alive>
