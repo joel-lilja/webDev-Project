@@ -198,4 +198,20 @@ export default {
 .map {
   min-height: 800px;
 }
+
+li {
+ /* float: left; */
+  border: 20px solid rgba(0, 0, 0, 0);
+  font-size: 18px;
+  height: 100px;
+  width: 400px;
+  line-height: 18px;
+  background: #ddd;
+  display: inline-block;
+  text-align: center;
+  float: left;
+  background-clip: padding-box;
+}
+
+
  </style>
