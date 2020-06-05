@@ -2,7 +2,7 @@
 <div>
   <highcharts :constructor-type="'mapChart'" :options="mapOptions" class="map"></highcharts>
   <ul ref="cardlist">
-    <li v-for="item in clist"  v-bind:key="item" >{{ item.name }} * GDP: {{item.gdp }} % land Agriculture: {{item.agi}}</li>
+    <li v-for="item in clist"  v-bind:key="item" >{{ item.name }} <br> GDP: {{item.gdp }} <br> % land Agriculture: {{item.agi}}</li>
   </ul>
 </div>
 </template>
@@ -106,7 +106,7 @@ export default {
                    var spliceIndex = 0; 
                 //   console.log('temp array')
                    try {
-                     var tempArray = JSON.parse(JSON.stringify(rootObj.clist))
+                     var tempArray = rootObj.clist //JSON.parse(JSON.stringify(rootObj.clist))
                      //console.log(tempArray)
                      for(var i = 0; i < tempArray.length; i++){
                    //      console.log('temp array at index: ' + i)
@@ -196,6 +196,6 @@ export default {
 </script>
  <style scoped>
 .map {
-  min-height: 500px;
+  min-height: 800px;
 }
  </style>

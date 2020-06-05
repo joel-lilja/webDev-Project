@@ -4,7 +4,7 @@ import HighchartsVue from 'highcharts-vue'
 import Highcharts from 'highcharts'
 import stockInit from 'highcharts/modules/stock'
 import mapInit from 'highcharts/modules/map'
-import addWorldMap from './js/worldmap'
+import addWorldMap from './js/world-highres'
 
 stockInit(Highcharts)
 mapInit(Highcharts)
