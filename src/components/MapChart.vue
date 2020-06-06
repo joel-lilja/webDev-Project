@@ -81,12 +81,12 @@ export default {
             events: {
               click: function() {
                 var self = this //inidicator gdp
-                getJSON('https://api.worldbank.org/v2/country/' + this.code + '/indicator/NY.GDP.MKTP.CD?date=2016&format=json', this, function(err, obj, data) {
+                getJSON('https://cors-anywhere.herokuapp.com/https://api.worldbank.org/v2/country/' + this.code + '/indicator/NY.GDP.MKTP.CD?date=2016&format=json', this, function(err, obj, data) {
                   if (err !== null) {
                       alert('Something went wrong: ' + err);
                   } else {
                       //inidicator % of land agrictultural purposes
-                  getJSON('https://api.worldbank.org/v2/country/' + self.code + '/indicator/AG.LND.AGRI.ZS?date=2016&format=json', this, function(err, dummyobj, idata2) {
+                  getJSON('https://cors-anywhere.herokuapp.com/https://api.worldbank.org/v2/country/' + self.code + '/indicator/AG.LND.AGRI.ZS?date=2016&format=json', this, function(err, dummyobj, idata2) {
                       if (err !== null) {
                       alert('Something went wrong: ' + err);
                        } else {
